@@ -1,15 +1,12 @@
-from  flask import request
+from flask import request
 from flask_restful import Resource
-
-from db import db
-from models.user import ComplainerModel
+from menagers.complainer import ComplainerManager
 
 
 class RegisterResource(Resource):
+
     def post(self):
         data = request.get_json()
-        user = ComplainerModel(**data)
-        db.session.add(user)
-        db.session.commit()
-        return 201
+        token = ComplainerManager.register(self, data)
+        return {"token": token}, 201
 

@@ -1,6 +1,8 @@
-from db import db
+from sqlalchemy import func
 
+from db import db
 from models.enums import ComplaintState
+
 
 class Complaint(db.Model):
     id = db.Column(db.Integer, primary_key=True)
