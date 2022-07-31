@@ -2,6 +2,8 @@ import jwt
 
 from datetime import datetime, timedelta
 from decouple import config
+
+
 class AuthManager:
     @staticmethod
     def encode_token(self, user):

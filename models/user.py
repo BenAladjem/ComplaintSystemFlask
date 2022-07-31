@@ -16,7 +16,7 @@ class BaseUserModel(db.Model):
 class ComplainerModel(BaseUserModel):
     __tablename__ = 'complainers'
 
-    complaints = db.relationship("Complaint", backref="complaint", lazy='dynamic')
+    complaints = db.relationship("ComplaintModel", backref="complaint", lazy='dynamic')
     role = db.Column(db.Enum(UserRole), default=UserRole.complainer, nullable=False)
 
 
