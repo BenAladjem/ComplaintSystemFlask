@@ -12,7 +12,7 @@ class ComplainerManager:
         complainer_data["password"] = generate_password_hash(complainer_data["password"])
         user = ComplainerModel(**complainer_data)
         db.session.add(user)
-        db.session.commit()
+        #db.session.commit()
         return AuthManager.encode_token(user)
 
     @staticmethod

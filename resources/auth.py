@@ -1,6 +1,8 @@
 from flask import request
+from flask_api import status
 from flask_restful import Resource
-from menagers.complainer import ComplainerManager
+from managers.complainer import ComplainerManager
+from schemas.requests.auth import LoginSchemaRequest
 from schemas.requests.auth import RegisterSchemaRequest
 from utils.decorators import validate_schema
 
@@ -11,3 +13,9 @@ class RegisterResource(Resource):
         token = ComplainerManager.register(data)
         return {"token": token}, 201
 
+class LoginResource(Resource):
+    @validate_schema(LoginSchemaRequest)
+    def post(self):
+        data = request.get_json()
+        token = ComplainerManager.login(data)
+        return {"token": token}, status.HTTP_200_OK
